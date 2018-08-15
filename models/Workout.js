@@ -4,7 +4,7 @@ const workoutSchema = new mongoose.Schema({
 	Username: String,
 	Description: String,
 	Duration: Number,
-	Date: String,
+	Date: Date,
 });
 
 const Workout = mongoose.model('Workout', workoutSchema);

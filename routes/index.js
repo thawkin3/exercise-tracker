@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
 });
 
 /* Create a new user */
-router.post('/api/user/add/:username', (req, res, next) => {
+const createUser = (req, res, next) => {
     if (req && req.params && !req.params.username) {
         return res.status(400).json({ error: 'Username is missing' });
     }
@@ -41,7 +41,9 @@ router.post('/api/user/add/:username', (req, res, next) => {
             return res.json({ user: createdUser });
         });
     });
-});
+};
+router.get('/api/user/add/:username', createUser);
+router.post('/api/user/add/:username', createUser);
 
 /* Log a workout */
 router.post('/api/exercise/add', (req, res, next) => {
@@ -72,7 +74,7 @@ router.post('/api/exercise/add', (req, res, next) => {
 });
 
 /* Get a user's workout history */
-router.get('/api/user/workouts/:username', (req, res, next) => {
+const getWorkoutHistory = (req, res, next) => {
     if (req && req.params && !req.params.username) {
         return res.status(400).json({ error: 'Username is missing' });
     }
@@ -82,6 +84,8 @@ router.get('/api/user/workouts/:username', (req, res, next) => {
         }
         return res.json({ workouts });
     });
-});
+};
+router.get('/api/user/workouts/:username', getWorkoutHistory);
+router.post('/api/user/workouts/:username', getWorkoutHistory);
 
 module.exports = router;
