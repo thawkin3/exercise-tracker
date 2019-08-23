@@ -1,7 +1,10 @@
+const path = require('path');
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const envConfig = require('dotenv').config();
+const envConfig = require('dotenv').config({
+    path: path.join(__dirname, '../.env')
+});
 const User = require('../models/User');
 const Workout = require('../models/Workout');
 
